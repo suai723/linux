@@ -1,0 +1,48 @@
+linux 操作系统的文件权限与目录
+  	用户与用户组
+  		用户 
+			1、保证文件所有者的信息安全 防护机制
+			2、隔离
+  	    用户组 
+  	     	1、共享
+  	     	2、一个用户可以处于多个用户组
+  	    root
+  	     	例子
+  	     	rm -rf xxxx
+	文件权限 
+		ls -al
+		d rwxr-x--- 4 root root 4096 sep 9 14:06 xxxxx
+			d:dir
+			-:file
+			l:链接文件 硬链接&软连接
+				硬链接 abc.sh ~
+					  hl-abc.sh /home
+					  删除任意一个不会对另一个造成影响
+				软链接 abc.sh ~
+					  sl-abc.sh /home
+					  删除了abc.sh-》sl-abc.sh不可用 windows里面快捷方式
+			b:接口设备
+			c:串行端口设备
+		rwx r-x --- 权限
+
+			r:read
+			w:write
+			x:execute
+			-：impossible
+				第一组：文件归属用户权限
+				第二组：用户组权限
+				第三组：其他
+				仅root用户下使用:
+					chmod
+						chmod u+x xxxx
+							u/g/o/a +/-/= r/w/x
+						chmod 750/754/740 xxxx
+							rwx r-x ---
+						    111 101 000
+					chgrp
+						chgrp [-r] dirname/filename
+					chown
+						chown [-r] dirname/filename
+
+	Linux 目录文件系统
+		FHS File hierarchy standard
