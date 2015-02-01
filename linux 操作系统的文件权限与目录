@@ -46,3 +46,41 @@ linux 操作系统的文件权限与目录
 
 	Linux 目录文件系统
 		FHS File hierarchy standard
+		\  
+			根目录
+		\bin 
+			存放用户的一般命令 如cp mkdir ls cat 等等 
+		\dev
+			存放设备及设备接口的配置文件
+		\etc
+			系统配置目录，配置文件都存放在该目录下。 
+			如: /etc/profile 环境变量配置
+				/etc/init.d 开机启动程序
+				/etc/x11  窗口相关的配置文件 
+		\home
+			用户目录，在系统中建立完用户后，该目录会生成以用户名的目录。
+			可以用 ~代替用户主目录
+			cd ~
+		\lib
+			函数库。bin目录中的命令会用到一些依赖的函数。这些必要的函数都存在这里。
+		\opt
+			第三方软件目录。安装第三方软件都放在这个目录，如maven，ant,jboss等等
+		\media
+			挂载媒体 cd-rom 
+		\mnt
+			挂载临时设备
+		\root
+			管理员主目录
+		\sbin
+			系统管理的命令的存放，是超级权限用户root的可执行命令存放地
+		\tmp
+			系统临时文件目录。软件产生的临时文件都会存放到该目录下，该目录需要定时清理。FHS建议，系统启动后需要清理该目录。
+			重要数据不要存放在这个目录。
+		\usr
+			usr 全称 Unix Software Resource
+			sharable 可分享的 
+			static   静态的
+			存放一些第三方软件的数据 类似 win系统的 windows目录 和 program File目录的结合。
+		\var
+			unsharable 不可分享的 
+			存放一些可变的文件
