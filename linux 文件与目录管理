@@ -1,0 +1,49 @@
+linux 文件与目录管理
+	目录相关操作
+		cd pwd mkdir
+	执行路径变量$PATH 环境变量
+		echo $PATH
+		Q:1、将bin/ls 移动到 其他目录 ls 能否正常执行？
+		  2、如果$PATH 定义了2个 ls 命令 那么先执行谁？
+	文件与目录管理
+		ls -a -l -d
+	复制 删除 替换
+		cp -a/i/r fileName Destination
+		rm -rf fileName (f是强制删除)
+		mv 重命名/移动
+	查阅文件
+		cat   cat fileName | grep -n KeyWord
+		more more fileName
+		less less fileName
+		head head -n 500 fileName 从头开始看500行 
+		tail tail -n 500 fileName 看末尾500行
+			 tail -f fileName 持续监测
+	文件、目录默认权限和隐藏权限
+		umask 
+			0     022
+			特殊   默认权限
+			000  010 110 => 等于1是要去掉的权限
+			rwx	 rwx rwx
+
+			文件默认权限 -rw-rw-rw
+			目录默认权限 drwxrwxrwx
+
+			umask 002   设置默认权限
+	文件隐藏属性
+		chattr
+			chattr +/-/= a/i fileName
+			a：只能添加不能删除
+			i:不可修改
+		lsattr
+			lsattr fileName
+			查看隐藏属性
+	file xxx.sh 查看文件类型
+	which ls 查看$PATH中命令的路径
+		例外：which cd 这个命令不存在在$PATH中，存在.bash中
+
+
+	权限与命令空间
+		目录(可工作目录)：可以使用命令
+					   目录在该用户上有x权限
+		文件:可使用命令
+			至少要有r权限
