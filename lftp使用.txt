@@ -1,0 +1,54 @@
+
+lftp是一个功能强大的下载工具，它支持访问文件的协议：ftp，sftp, ftps, http, hftp, fish.（其中ftps和https需要在编译的时候包含openss库）。
+lftp的界面和shell很像：有命令补全功能，历史记录，允许多个后台任务执行等功能，使用起来比较疯便。而且它还具有书签，排队，镜像，断点续传，多进程下载等功能。
+
+
+
+1、登录ftp
+
+    //命令格式：
+        lftp 用户名:密码@ftp地址：传送端口（默认为21）
+    用法
+        （1）lftp username:password@127.0.0.0 回车
+        （2）lftp username@127.0.0.0 回车 #默认端口为21 ，回车后输入密码
+        （3）lftp 127.0.0.0 回车  ##回车后 login <用户|URL> [<密码>] 登录
+        （4）lftp 回车 -->open 127.0.0.0-->login 登录
+
+2、下载文件前首先要设置还本地的目录，用来存放下载的文件
+        lcd /home/xxx/test  ##设置本地存放目录 
+
+        get  filename (如1.txt，ppt， pdf) //下载单个文件 
+        mget *.txt                      //下载一组文件,也即是批量下载所有的txt文件
+        get -c 1.txt                     //断点续传下载
+        mget -c *.txt                    //断点续传
+        
+        pget -c n 10 file.dat  //最多10个线程以允许断点续传的方式下载file.dat
+
+         mget -d dirname/（通配符*）    //下载目录
+        mirror dirname         //将目录的整个下载下来，子目录也会自动复制到，本地自动建立目录
+
+3、 上传文件
+        put  1.txt
+        mput *.txt
+
+        mirror -R miao // 上传整个目录
+        mput -d dirname/*   #上传目录
+
+
+        !ls 浏览本体目录
+        cd 切换到远端目录（lcd 切换到本地目录）
+                  基本使用方法：
+
+        
+        1）、下载服务器端文件：
+
+        # mirror –vn RCD LCD   //RCD为远程路径，LCD为本地路径
+
+        2）、上传文件：
+
+        # mirror –R LCD RCD     
+
+从远程主机上下载目录文件
+      通过sftp下载目录：
+            lftp sftp://user@host -p port
+           lftp :~> mirror my_path
